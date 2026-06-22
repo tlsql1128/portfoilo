@@ -1,0 +1,36 @@
+:root {
+  --cursor-custom: url("../images/cuser.png") 6 6, auto;
+}
+
+html,
+body,
+*,
+*::before,
+*::after {
+  cursor: var(--cursor-custom);
+}
+
+a,
+button,
+input,
+textarea,
+select,
+label,
+[role="button"],
+summary {
+  cursor: var(--cursor-custom);
+}
+
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+strong,
+em {
+  cursor: var(--cursor-custom);
+}

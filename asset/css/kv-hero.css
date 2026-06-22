@@ -1,0 +1,385 @@
+@font-face {
+  font-family: "Cafe24Gounbam";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff") format("woff");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MaruBuri";
+  src: url("https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-ExtraLight.woff2") format("woff2");
+  font-weight: 200;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MaruBuri";
+  src: url("https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MaruBuri";
+  src: url("https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MaruBuri";
+  src: url("https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "MaruBuri", serif;
+  color: rgba(20, 20, 20, 0.7);
+  scroll-behavior: smooth;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.kv {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+}
+
+.kv-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.kv-video--intro {
+  z-index: 2;
+  opacity: 1;
+}
+
+.kv-video--loop {
+  z-index: 1;
+  opacity: 0;
+}
+
+.kv-video--intro.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.kv-video--loop.is-active {
+  opacity: 1;
+}
+
+/* ── Corner info & scroll (unified UI type) ── */
+
+.kv-corner,
+.kv-scroll {
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  font-weight: 500;
+  color: rgba(20, 20, 20, 0.7);
+}
+
+.kv-corner {
+  position: absolute;
+  z-index: 2;
+  opacity: 0;
+  animation: kv-fade-in-ui 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+.kv-corner--year {
+  top: 58px;
+  left: 58px;
+  font-size: clamp(12px, 0.85vw, 13px);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  animation: kv-fade-in-brand 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+.kv-corner--about {
+  top: 58px;
+  right: 58px;
+  letter-spacing: 0.2em;
+  opacity: 0;
+  transition: opacity 0.3s ease, letter-spacing 0.3s ease;
+  animation: kv-fade-in-about 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+.kv-corner--about:hover {
+  letter-spacing: 0.4em;
+  opacity: 1;
+}
+
+.kv-corner--words {
+  bottom: 58px;
+  left: 58px;
+  font-size: 15px;
+  letter-spacing: 0.25em;
+  line-height: 2.2;
+  animation: kv-fade-in-words 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) 1.5s forwards;
+}
+
+/* ── Center title ── */
+
+.kv-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+.kv-title__group {
+  position: relative;
+  width: fit-content;
+  padding-bottom: clamp(32px, 4vw, 52px);
+}
+
+.kv-title__main {
+  font-family: "MaruBuri", serif;
+  font-size: clamp(108px, 9vw, 198px);
+  line-height: 0.9;
+  font-weight: 200;
+  letter-spacing: -0.025em;
+  color: rgba(20, 20, 20, 0.82);
+  opacity: 0;
+  animation: kv-rise-in-main 1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+.kv-title__signature {
+  position: absolute;
+  right: 0;
+  top: calc(100% - 34px);
+  font-family: "Cafe24Gounbam", cursive;
+  font-size: clamp(29px, 1.85vw, 41px);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  color: rgba(20, 20, 20, 0.72);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(60px) translateY(-12px) rotate(-6deg);
+  transform-origin: right top;
+  animation: kv-rise-in-signature 1s cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s forwards;
+}
+
+.kv-categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  margin-top: clamp(36px, 4vw, 48px);
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(20, 20, 20, 0.75);
+  opacity: 0;
+  animation: kv-rise-in-categories 1s cubic-bezier(0.22, 0.61, 0.36, 1) 0.6s forwards;
+}
+
+.kv-categories__sep {
+  letter-spacing: 0;
+  opacity: 0.82;
+}
+
+/* ── Scroll hint ── */
+
+.kv-scroll {
+  position: absolute;
+  bottom: 58px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  pointer-events: auto;
+  animation: kv-fade-in-scroll 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) 1.7s forwards;
+}
+
+.kv-scroll__text {
+  opacity: 0.8;
+}
+
+.kv-scroll__star {
+  width: clamp(32px, 3.5vw, 44px);
+  height: auto;
+  display: block;
+  object-fit: contain;
+  animation: floatStar 4s ease-in-out infinite;
+}
+
+/* ── Animations ── */
+
+@keyframes kv-fade-in-ui {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.55;
+  }
+}
+
+@keyframes kv-fade-in-brand {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.65;
+  }
+}
+
+@keyframes kv-fade-in-about {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.7;
+  }
+}
+
+@keyframes kv-fade-in-words {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.75;
+  }
+}
+
+@keyframes kv-fade-in-scroll {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes kv-rise-in-main {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes kv-rise-in-signature {
+  from {
+    opacity: 0;
+    transform: translateX(60px) translateY(0) rotate(-2deg);
+  }
+
+  to {
+    opacity: 0.72;
+    transform: translateX(60px) translateY(-12px) rotate(-6deg);
+  }
+}
+
+@keyframes kv-rise-in-categories {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 0.82;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatStar {
+  0% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 768px) {
+  .kv-corner--year,
+  .kv-corner--about {
+    top: 32px;
+  }
+
+  .kv-corner--year {
+    left: 32px;
+  }
+
+  .kv-corner--about {
+    right: 32px;
+  }
+
+  .kv-corner--words {
+    bottom: 96px;
+    left: 32px;
+  }
+
+  .kv-scroll {
+    bottom: 32px;
+  }
+
+  .kv-categories {
+    gap: 16px 32px;
+    margin-top: 36px;
+    padding: 0 32px;
+  }
+
+  .kv-title__main {
+    font-size: clamp(72px, 16vw, 140px);
+  }
+
+  .kv-title__signature {
+    font-size: clamp(22px, 4.5vw, 31px);
+    top: calc(100% - 24px);
+    transform: translateX(clamp(32px, 8vw, 48px)) translateY(-12px) rotate(-6deg);
+  }
+}
