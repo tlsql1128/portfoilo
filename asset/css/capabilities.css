@@ -1,0 +1,300 @@
+.capabilities {
+  width: 100%;
+  background-color: #d8dbde;
+  background-image: url("../images/about-kv.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #2f3133;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.capabilities__inner {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding: clamp(36px, 4.5vh, 52px) clamp(24px, 5vw, 48px) clamp(40px, 5vh, 56px);
+  box-sizing: border-box;
+}
+
+/* ── Header ── */
+
+.capabilities__header {
+  text-align: center;
+  margin-bottom: clamp(28px, 3.5vh, 40px);
+}
+
+.capabilities__label {
+  font-family: "MaruBuri", serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #6f747a;
+  opacity: 0.75;
+  margin-bottom: clamp(14px, 2vh, 20px);
+}
+
+.capabilities__headline {
+  font-family: "MaruBuri", serif;
+  font-size: clamp(32px, 4.2vw, 56px);
+  font-weight: 200;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #2f3133;
+  margin: 0 auto;
+}
+
+/* ── 2×2 grid ── */
+
+.capabilities__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  width: 100%;
+}
+
+.capabilities__card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 1.8vh, 20px);
+  min-height: clamp(360px, 38vh, 420px);
+  height: auto;
+  padding: clamp(28px, 3vw, 36px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background-color: rgba(255, 255, 255, 0.18);
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.28),
+    rgba(255, 255, 255, 0.06)
+  );
+  transition:
+    transform 0.4s ease,
+    border-color 0.4s ease,
+    background-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.capabilities__card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(47, 49, 51, 0.22);
+  background-color: rgba(255, 255, 255, 0.26);
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.34),
+    rgba(255, 255, 255, 0.1)
+  );
+  box-shadow: 0 12px 32px rgba(47, 49, 51, 0.06);
+}
+
+.capabilities__card-keyword {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  font-family: "MaruBuri", serif;
+  font-size: clamp(48px, 7vw, 90px);
+  font-weight: 200;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: #2f3133;
+  opacity: 0.04;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.capabilities__card-head,
+.capabilities__card-list,
+.capabilities__card-foot {
+  position: relative;
+  z-index: 1;
+}
+
+.capabilities__card-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.capabilities__card-index {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding-left: 12px;
+  position: relative;
+}
+
+.capabilities__card-index::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: calc(100% + 10px);
+  background: rgba(111, 116, 122, 0.35);
+}
+
+.capabilities__card-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(111, 116, 122, 0.55);
+  flex-shrink: 0;
+}
+
+.capabilities__card-num {
+  font-family: "MaruBuri", serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: #2f3133;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.capabilities__card-title {
+  font-family: "MaruBuri", serif;
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #2f3133;
+  line-height: 1.2;
+}
+
+.capabilities__card-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-height: 0;
+}
+
+.capabilities__card-list li {
+  font-size: clamp(15px, 1.4vw, 18px);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: #2f3133;
+  opacity: 0.88;
+  line-height: 1.8;
+}
+
+.capabilities__card-foot {
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+.capabilities__tags-label {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #2f3133;
+  opacity: 0.72;
+  margin-bottom: 10px;
+}
+
+.capabilities__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.capabilities__tag {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: #2f3133;
+  opacity: 0.88;
+  padding: 8px 14px;
+  border: 1px solid rgba(47, 49, 51, 0.24);
+  background: rgba(255, 255, 255, 0.14);
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.capabilities__tag:hover {
+  background: rgba(255, 255, 255, 0.32);
+  border-color: rgba(47, 49, 51, 0.34);
+}
+
+/* ── Scroll reveal ── */
+
+.capabilities [data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.capabilities [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.capabilities__card[data-reveal].is-visible:hover {
+  transform: translateY(-6px);
+}
+
+.capabilities__card[data-reveal]:nth-child(2) { transition-delay: 0.06s; }
+.capabilities__card[data-reveal]:nth-child(3) { transition-delay: 0.12s; }
+.capabilities__card[data-reveal]:nth-child(4) { transition-delay: 0.18s; }
+
+/* ── Responsive ── */
+
+@media (max-width: 900px) {
+  .capabilities__inner {
+    padding-left: clamp(24px, 5vw, 40px);
+    padding-right: clamp(24px, 5vw, 40px);
+  }
+
+  .capabilities__grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .capabilities__card {
+    min-height: 320px;
+  }
+
+  .capabilities__card-title {
+    font-size: clamp(20px, 5vw, 26px);
+  }
+
+  .capabilities__card-list li {
+    font-size: clamp(15px, 3.8vw, 17px);
+  }
+}
+
+@media (max-width: 640px) {
+  .capabilities__inner {
+    padding: 40px 28px 48px;
+  }
+
+  .capabilities__headline {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .capabilities [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .capabilities__card:hover,
+  .capabilities__card[data-reveal].is-visible:hover {
+    transform: none;
+  }
+}

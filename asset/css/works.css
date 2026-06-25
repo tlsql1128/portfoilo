@@ -1,0 +1,397 @@
+.works {
+  width: 100%;
+  background-color: #d8dbde;
+  background-image: url("../images/about-kv.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #2f3133;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.works__inner {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding: clamp(48px, 6vh, 72px) clamp(24px, 5vw, 48px) clamp(56px, 7vh, 80px);
+  box-sizing: border-box;
+}
+
+/* ── Header ── */
+
+.works__header {
+  text-align: center;
+  margin-bottom: clamp(28px, 3.5vh, 40px);
+}
+
+.works__label {
+  font-family: "MaruBuri", serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #6f747a;
+  opacity: 0.75;
+  margin-bottom: clamp(14px, 2vh, 20px);
+}
+
+.works__headline {
+  font-family: "MaruBuri", serif;
+  font-size: clamp(28px, 3.8vw, 52px);
+  font-weight: 200;
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  color: #2f3133;
+  margin: 0 auto;
+}
+
+/* ── Filters ── */
+
+.works__filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(8px, 1.2vw, 14px);
+  margin-bottom: clamp(32px, 4vh, 48px);
+}
+
+.works__filter {
+  font-family: "MaruBuri", serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #6f747a;
+  padding: 10px 18px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition:
+    color 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.works__filter:hover {
+  color: #2f3133;
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(47, 49, 51, 0.14);
+}
+
+.works__filter.is-active {
+  color: #2f3133;
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(47, 49, 51, 0.2);
+}
+
+/* ── Grid ── */
+
+.works__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(14px, 1.8vw, 20px);
+  align-items: start;
+}
+
+.works__card-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.works__card {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.works__card.is-hidden {
+  display: none;
+}
+
+.works__card-media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.works__card-figure {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.works__card-img-only {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.works__card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.works__card-visual {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.works__card-visual--01 {
+  background-image: linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0)
+    ),
+    url("../images/kv-bg.png");
+  background-size: cover;
+  background-position: 30% 40%;
+}
+
+.works__card-visual--02 {
+  background-image: linear-gradient(
+      200deg,
+      rgba(200, 204, 208, 0.9),
+      rgba(232, 234, 236, 0.75)
+    ),
+    url("../images/about-kv.png");
+  background-size: cover;
+  background-position: 60% 30%;
+}
+
+.works__card-visual--03 {
+  background-image: linear-gradient(
+      135deg,
+      rgba(216, 219, 222, 0.95),
+      rgba(184, 188, 192, 0.85)
+    ),
+    url("../images/kv-bg.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.works__card-visual--04 {
+  background-image: linear-gradient(
+      180deg,
+      rgba(228, 230, 232, 0.9),
+      rgba(176, 180, 184, 0.8)
+    ),
+    url("../images/about-kv.png");
+  background-size: cover;
+  background-position: 40% 60%;
+}
+
+.works__card-visual--05 {
+  background-image: linear-gradient(
+      145deg,
+      rgba(210, 214, 218, 0.92),
+      rgba(238, 240, 242, 0.8)
+    ),
+    url("../images/kv-bg.png");
+  background-size: cover;
+  background-position: 70% 50%;
+}
+
+.works__card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: clamp(24px, 3vw, 32px);
+  background: linear-gradient(
+    to top,
+    rgba(47, 49, 51, 0.58) 0%,
+    rgba(47, 49, 51, 0.28) 42%,
+    rgba(47, 49, 51, 0) 72%
+  );
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.works__card-title {
+  font-family: "MaruBuri", serif;
+  font-size: clamp(18px, 1.8vw, 22px);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #f5f6f7;
+  line-height: 1.35;
+  margin: 0;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.18);
+}
+
+.works__card-cat {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.works__card-tech {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.works__card-year {
+  font-family: "MaruBuri", serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.works__card-link:hover .works__card-visual,
+.works__card-link:hover .works__card-img,
+.works__card-link:hover .works__card-img-only,
+.works__card-link:focus-visible .works__card-visual,
+.works__card-link:focus-visible .works__card-img,
+.works__card-link:focus-visible .works__card-img-only {
+  transform: scale(1.06);
+}
+
+.works__card-figure .works__card-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.works__card-link:hover .works__card-overlay,
+.works__card-link:focus-visible .works__card-overlay {
+  opacity: 1;
+}
+
+.works__card-meta {
+  padding: 14px 4px 0;
+}
+
+.works__card-meta-title {
+  font-family: "MaruBuri", serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #2f3133;
+  line-height: 1.3;
+}
+
+.works__card-meta-year {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: #6f747a;
+  margin-top: 4px;
+}
+
+.works__card-link:hover .works__card-meta,
+.works__card-link:focus-visible .works__card-meta {
+  opacity: 0;
+}
+
+.works__card-meta {
+  transition: opacity 0.3s ease;
+}
+
+/* ── Scroll reveal ── */
+
+.works [data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.works [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.works__card[data-reveal]:nth-child(2) { transition-delay: 0.06s; }
+.works__card[data-reveal]:nth-child(3) { transition-delay: 0.12s; }
+.works__card[data-reveal]:nth-child(4) { transition-delay: 0.18s; }
+.works__card[data-reveal]:nth-child(5) { transition-delay: 0.24s; }
+.works__card[data-reveal]:nth-child(6) { transition-delay: 0.3s; }
+.works__card[data-reveal]:nth-child(7) { transition-delay: 0.36s; }
+.works__card[data-reveal]:nth-child(8) { transition-delay: 0.42s; }
+.works__card[data-reveal]:nth-child(9) { transition-delay: 0.48s; }
+.works__card[data-reveal]:nth-child(10) { transition-delay: 0.54s; }
+.works__card[data-reveal]:nth-child(11) { transition-delay: 0.6s; }
+.works__card[data-reveal]:nth-child(12) { transition-delay: 0.66s; }
+.works__card[data-reveal]:nth-child(13) { transition-delay: 0.72s; }
+.works__card[data-reveal]:nth-child(14) { transition-delay: 0.78s; }
+.works__card[data-reveal]:nth-child(15) { transition-delay: 0.84s; }
+.works__card[data-reveal]:nth-child(16) { transition-delay: 0.9s; }
+.works__card[data-reveal]:nth-child(17) { transition-delay: 0.96s; }
+
+/* ── Responsive ── */
+
+@media (max-width: 768px) {
+  .works__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .works__filters {
+    gap: 8px;
+  }
+
+  .works__filter {
+    padding: 8px 14px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .works__inner {
+    padding: 48px 28px 64px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .works [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .works__card-visual,
+  .works__card-img,
+  .works__card-img-only {
+    transition: none;
+    transform: none;
+  }
+
+  .works__card-overlay {
+    opacity: 1;
+  }
+}

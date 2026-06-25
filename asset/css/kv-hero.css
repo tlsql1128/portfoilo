@@ -58,6 +58,26 @@ a {
   height: 100vh;
   overflow: hidden;
   background: #000;
+  isolation: isolate;
+}
+
+.kv__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.kv__ui {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.kv__ui a,
+.kv__ui .kv-scroll {
+  pointer-events: auto;
 }
 
 .kv-video {
@@ -67,25 +87,6 @@ a {
   height: 100%;
   object-fit: cover;
   pointer-events: none;
-}
-
-.kv-video--intro {
-  z-index: 2;
-  opacity: 1;
-}
-
-.kv-video--loop {
-  z-index: 1;
-  opacity: 0;
-}
-
-.kv-video--intro.is-hidden {
-  visibility: hidden;
-  opacity: 0;
-}
-
-.kv-video--loop.is-active {
-  opacity: 1;
 }
 
 /* ── Corner info & scroll (unified UI type) ── */
@@ -100,7 +101,7 @@ a {
 
 .kv-corner {
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   opacity: 0;
   animation: kv-fade-in-ui 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
@@ -143,7 +144,7 @@ a {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) translateZ(0);
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -159,6 +160,8 @@ a {
 }
 
 .kv-title__main {
+  position: relative;
+  z-index: 1;
   font-family: "MaruBuri", serif;
   font-size: clamp(108px, 9vw, 198px);
   line-height: 0.9;
@@ -215,7 +218,7 @@ a {
   bottom: 58px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 2;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
