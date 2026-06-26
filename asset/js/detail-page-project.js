@@ -4,14 +4,15 @@
   if (!detail || !content) return;
 
   const closeBtn = detail.querySelector("[data-project-detail-close]");
-  const works = document.getElementById("works");
   const triggers = document.querySelectorAll("[data-project-detail]");
+  let lastScrollY = 0;
 
   function openDetail(id, e) {
     if (e) e.preventDefault();
     const project = PROJECTS[id];
     if (!project || project.type !== "detail") return;
 
+    lastScrollY = window.scrollY;
     content.innerHTML = renderDetailProject(project);
     document.body.classList.add("is-project-detail-open");
     detail.setAttribute("aria-hidden", "false");
@@ -22,10 +23,7 @@
     document.body.classList.remove("is-project-detail-open");
     detail.setAttribute("aria-hidden", "true");
     content.innerHTML = "";
-
-    if (works) {
-      works.scrollIntoView({ behavior: "auto", block: "start" });
-    }
+    window.scrollTo({ top: lastScrollY, behavior: "auto" });
   }
 
   triggers.forEach((trigger) => {

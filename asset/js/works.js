@@ -34,18 +34,71 @@ function applyWorksFilter(category) {
   }
 }
 
+function setWorksFilter(category) {
+  worksFilters.forEach((btn) => {
+    btn.classList.toggle("is-active", btn.dataset.filter === category);
+  });
+  applyWorksFilter(category);
+}
+
+function getActiveWorksFilter() {
+  const active = document.querySelector(".works__filter.is-active");
+  return active ? active.dataset.filter : "all";
+}
+
 worksFilters.forEach((filter) => {
   filter.addEventListener("click", () => {
-    const category = filter.dataset.filter;
-
-    worksFilters.forEach((btn) => btn.classList.remove("is-active"));
-    filter.classList.add("is-active");
-
-    applyWorksFilter(category);
+    setWorksFilter(filter.dataset.filter);
   });
 });
 
 sortWorksByCategory();
+
+/* ── 상세 페이지에서 돌아올 때 필터·스크롤 복원 ───────────────────────────── */
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
+const WORKS_SCROLL_KEY = "worksScrollY";
+const WORKS_FILTER_KEY = "worksFilter";
+
+function saveWorksState() {
+  sessionStorage.setItem(WORKS_SCROLL_KEY, String(window.scrollY));
+  sessionStorage.setItem(WORKS_FILTER_KEY, getActiveWorksFilter());
+}
+
+document.querySelectorAll(".works__card-link").forEach((link) => {
+  link.addEventListener("click", () => {
+    const href = link.getAttribute("href");
+    if (href && href !== "#") {
+      saveWorksState();
+    }
+  });
+});
+
+function restoreWorksState() {
+  const savedFilter = sessionStorage.getItem(WORKS_FILTER_KEY);
+  const savedScroll = sessionStorage.getItem(WORKS_SCROLL_KEY);
+
+  if (savedFilter === null && savedScroll === null) return;
+
+  if (savedFilter) {
+    setWorksFilter(savedFilter);
+  }
+
+  if (savedScroll !== null) {
+    const scrollY = parseInt(savedScroll, 10) || 0;
+    requestAnimationFrame(() => {
+      window.scrollTo(0, scrollY);
+    });
+  }
+
+  sessionStorage.removeItem(WORKS_FILTER_KEY);
+  sessionStorage.removeItem(WORKS_SCROLL_KEY);
+}
+
+restoreWorksState();
+window.addEventListener("pageshow", restoreWorksState);
 
 const worksRevealTargets = document.querySelectorAll(".works [data-reveal]");
 

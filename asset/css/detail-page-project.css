@@ -99,7 +99,7 @@ body.is-project-detail-open .detail-page-project {
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  color: #4a90e2;
+  color: var(--dpp-accent, #6F747A);
 }
 
 .dpp-hero__title {
@@ -203,6 +203,17 @@ body.is-project-detail-open .detail-page-project {
   border: 1px dashed #b8c7e6;
 }
 
+.dpp-mockup {
+  width: 360px;
+  max-width: 100%;
+}
+
+.dpp-mockup img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 /* ── 섹션 블록 공통 ───────────────────────────── */
 .dpp-block {
   margin-top: 80px;
@@ -211,7 +222,7 @@ body.is-project-detail-open .detail-page-project {
 .dpp-block__num {
   font-size: 14px;
   font-weight: 700;
-  color: #4a90e2;
+  color: var(--dpp-accent, #6F747A);
 }
 
 .dpp-block__title {
@@ -260,7 +271,7 @@ body.is-project-detail-open .detail-page-project {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #4a90e2;
+  background: var(--dpp-accent, #6F747A);
   color: #fff;
   font-size: 13px;
   font-weight: 700;
@@ -393,7 +404,7 @@ body.is-project-detail-open .detail-page-project {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #4a90e2;
+  background: var(--dpp-accent, #6F747A);
 }
 
 /* ── 05 Zoom Detail ───────────────────────────── */
@@ -436,7 +447,7 @@ body.is-project-detail-open .detail-page-project {
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: #4a90e2;
+  color: var(--dpp-accent, #6F747A);
 }
 
 .dpp-side__sub {
@@ -470,6 +481,22 @@ body.is-project-detail-open .detail-page-project {
   color: #8aa0c4;
 }
 
+.dpp-side-img {
+  margin-top: 16px;
+  width: 100%;
+  max-height: 2400px;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid #ececec;
+  background: #fff;
+}
+
+.dpp-side-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 /* ── 반응형 ───────────────────────────── */
 @media (max-width: 1200px) {
   .detail-page-project__inner {
@@ -483,6 +510,10 @@ body.is-project-detail-open .detail-page-project {
 
   .dpp-placeholder--side {
     height: 1800px;
+  }
+
+  .dpp-side-img {
+    max-height: 1800px;
   }
 
   .dpp-hero {

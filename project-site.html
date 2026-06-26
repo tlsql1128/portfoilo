@@ -12,6 +12,13 @@
 <body>
   <main class="pd" id="siteProjectRoot"></main>
 
+  <div class="pd-lightbox" id="pdLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="화면 확대 보기">
+    <button type="button" class="pd-lightbox__close" aria-label="닫기">&times;</button>
+    <div class="pd-lightbox__stage">
+      <img class="pd-lightbox__img" src="" alt="">
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="asset/js/projects-data.js"></script>
   <script src="asset/js/project-render.js"></script>

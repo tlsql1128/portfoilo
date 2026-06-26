@@ -38,8 +38,20 @@ function renderDetailProject(p) {
   const tags = p.tags.map((t) => `<li class="dpp-tag">${t}</li>`).join("");
   const tools = p.tools.map((t) => `<li class="dpp-tool-badge">${t}</li>`).join("");
 
+  const accent = p.accent || "#6F747A";
+
+  const mockup = p.mockup
+    ? `<div class="dpp-mockup"><img src="${p.mockup}" alt="${p.title} 모바일 목업" loading="lazy" decoding="async"></div>`
+    : `<div class="dpp-placeholder dpp-placeholder--mockup">MOBILE MOCKUP</div>`;
+
+  const sidePreview = p.detailImage
+    ? `<div class="dpp-side-img"><img src="${p.detailImage}" alt="${p.title} 상세페이지 전체 이미지" loading="lazy" decoding="async"></div>`
+    : `<div class="dpp-placeholder dpp-placeholder--side">
+              <span class="dpp-side__caption">DETAIL PAGE IMAGE</span>
+            </div>`;
+
   return `
-    <section class="detail-page-project__section" aria-label="${p.title} 프로젝트 상세">
+    <section class="detail-page-project__section" aria-label="${p.title} 프로젝트 상세" style="--dpp-accent: ${accent}">
       <div class="detail-page-project__inner">
         <div class="detail-page-project__content">
           <div class="dpp-hero">
@@ -58,8 +70,7 @@ function renderDetailProject(p) {
                 <ul class="dpp-tools__list">${tools}</ul>
               </div>
             </div>
-            <div class="dpp-hero__mockup">
-              <div class="dpp-placeholder dpp-placeholder--mockup">MOBILE MOCKUP</div>
+            <div class="dpp-hero__mockup">${mockup}
             </div>
           </div>
 
@@ -126,9 +137,7 @@ function renderDetailProject(p) {
           <div class="detail-page-project__side-preview">
             <p class="dpp-side__label">FULL PAGE PREVIEW</p>
             <p class="dpp-side__sub">상세페이지 전체 미리보기</p>
-            <div class="dpp-placeholder dpp-placeholder--side">
-              <span class="dpp-side__caption">DETAIL PAGE IMAGE</span>
-            </div>
+            ${sidePreview}
           </div>
         </aside>
       </div>
@@ -164,13 +173,45 @@ function renderSiteProject(p) {
     .join("");
 
   const screens = p.screens
-    .map(
-      (label) => `
+    .map((screen) => {
+      const label = typeof screen === "string" ? screen : screen.label;
+      const src = typeof screen === "string" ? null : screen.image;
+      const isFullPage = typeof screen === "object" && screen.image;
+
+      const content = src
+        ? `<div class="project-detail-shot${isFullPage ? " project-detail-shot--page" : ""}" data-full-page="${isFullPage ? "true" : "false"}">
+            <img src="${src}" alt="${p.title} ${label}" loading="lazy" decoding="async">
+          </div>`
+        : `<div class="project-detail-placeholder project-detail-placeholder--screen">이미지 준비중</div>`;
+
+      return `
       <div class="project-detail-screen">
         <p class="project-detail-screen__label">${label}</p>
-        <div class="project-detail-placeholder project-detail-placeholder--screen">이미지 준비중</div>
-      </div>`
-    )
+        ${content}
+      </div>`;
+    })
+    .join("");
+
+  const deviceSizes = [
+    { key: "desktop", label: "DESKTOP", modifier: "desktop" },
+    { key: "tablet", label: "TABLET", modifier: "tablet" },
+    { key: "mobile", label: "MOBILE", modifier: "mobile" },
+  ];
+
+  const devices = deviceSizes
+    .map(({ key, label, modifier }) => {
+      const src = p.devices?.[key];
+      const content = src
+        ? `<div class="project-detail-frame project-detail-frame--${modifier}">
+            <img src="${src}" alt="${p.title} ${label} 화면" loading="lazy" decoding="async">
+          </div>`
+        : `<div class="project-detail-placeholder project-detail-placeholder--${modifier}">이미지 준비중</div>`;
+      return `
+      <div class="project-detail-device">
+        ${content}
+        <p class="project-detail-device__label">${label}</p>
+      </div>`;
+    })
     .join("");
 
   const tags = p.tags.map((t) => `<li class="pd-kv__tag">${t}</li>`).join("");
@@ -193,17 +234,19 @@ function renderSiteProject(p) {
     .map((t) => `<li class="pd-kv__tool-badge">${t}</li>`)
     .join("");
 
+  const accent = p.accent || "#6F747A";
+
   return `
     <div class="pd-topbar">
       <div class="pd-topbar__inner">
-        <a class="pd-back" href="index.html#works">
+        <a class="pd-back" href="index.html#works" onclick="if(history.length>1){event.preventDefault();history.back();}">
           <span class="pd-back__icon" aria-hidden="true">←</span>
           Back to Projects
         </a>
       </div>
     </div>
 
-    <section class="pd-kv" aria-label="프로젝트 상세 비주얼">
+    <section class="pd-kv" aria-label="프로젝트 상세 비주얼" style="--pd-accent: ${accent}">
       <div class="pd-kv__inner">
         <div class="pd-kv__info" data-pd-left>
           <p class="pd-kv__eyebrow">PROJECT</p>
@@ -224,12 +267,16 @@ function renderSiteProject(p) {
           </div>
         </div>
         <div class="pd-kv__visual" data-pd-right>
-          <div class="pd-kv__mockup-placeholder">DESKTOP MOCKUP</div>
+          ${
+            p.mockup
+              ? `<img class="pd-kv__mockup-img" src="${p.mockup}" alt="${p.title} 목업">`
+              : `<div class="pd-kv__mockup-placeholder">DESKTOP MOCKUP</div>`
+          }
         </div>
       </div>
     </section>
 
-    <div class="project-detail">
+    <div class="project-detail" style="--pd-accent: ${accent}">
       <section class="project-detail__section">
         <div class="project-detail__grid">
           <article class="project-detail-card">
@@ -265,7 +312,7 @@ function renderSiteProject(p) {
               <div class="project-detail-type">
                 <span class="project-detail-type__aa">Aa</span>
                 <div class="project-detail-type__info">
-                  <p class="project-detail-type__font">Pretendard</p>
+                  <p class="project-detail-type__font">${p.font || "Pretendard"}</p>
                   <p class="project-detail-type__weights">Bold</p>
                   <p class="project-detail-type__weights">Medium</p>
                   <p class="project-detail-type__weights">Regular</p>
@@ -273,19 +320,7 @@ function renderSiteProject(p) {
               </div>
             </div>
           </div>
-          <div class="project-detail-system__right">
-            <div class="project-detail-device">
-              <div class="project-detail-placeholder project-detail-placeholder--desktop">이미지 준비중</div>
-              <p class="project-detail-device__label">DESKTOP</p>
-            </div>
-            <div class="project-detail-device">
-              <div class="project-detail-placeholder project-detail-placeholder--tablet">이미지 준비중</div>
-              <p class="project-detail-device__label">TABLET</p>
-            </div>
-            <div class="project-detail-device">
-              <div class="project-detail-placeholder project-detail-placeholder--mobile">이미지 준비중</div>
-              <p class="project-detail-device__label">MOBILE</p>
-            </div>
+          <div class="project-detail-system__right">${devices}
           </div>
         </article>
 

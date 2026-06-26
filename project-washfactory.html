@@ -13,14 +13,14 @@
   <main class="pd">
     <div class="pd-topbar">
       <div class="pd-topbar__inner">
-        <a class="pd-back" href="index.html#works">
+        <a class="pd-back" href="index.html#works" onclick="if(history.length>1){event.preventDefault();history.back();}">
           <span class="pd-back__icon" aria-hidden="true">←</span>
           Back to Projects
         </a>
       </div>
     </div>
 
-    <section class="pd-kv" aria-label="프로젝트 상세 비주얼">
+    <section class="pd-kv" aria-label="프로젝트 상세 비주얼" style="--pd-accent: #18D1A8">
       <div class="pd-kv__inner">
         <div class="pd-kv__info" data-pd-left>
           <p class="pd-kv__eyebrow">PROJECT</p>
@@ -103,7 +103,7 @@
       </div>
     </section>
 
-    <div class="project-detail">
+    <div class="project-detail" style="--pd-accent: #18D1A8">
       <section class="project-detail__section" aria-label="프로젝트 상세 콘텐츠">
         <div class="project-detail__grid">
           <article class="project-detail-card">
@@ -206,17 +206,6 @@
                   <p class="project-detail-type__weights">Medium</p>
                   <p class="project-detail-type__weights">Regular</p>
                 </div>
-              </div>
-            </div>
-
-            <div class="project-detail-system__block">
-              <p class="project-detail-system__label">COMPONENTS</p>
-              <div class="project-detail-components">
-                <button type="button" class="project-detail-btn project-detail-btn--primary">버튼 예시</button>
-                <button type="button" class="project-detail-btn project-detail-btn--ghost">버튼 예시</button>
-                <button type="button" class="project-detail-iconbtn" aria-label="사용자">&#128100;</button>
-                <button type="button" class="project-detail-iconbtn" aria-label="메뉴">&#9776;</button>
-                <button type="button" class="project-detail-iconbtn" aria-label="다음">&#8250;</button>
               </div>
             </div>
           </div>

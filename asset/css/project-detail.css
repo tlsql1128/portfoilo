@@ -187,7 +187,7 @@ body {
 }
 
 .pd-kv__live-link:hover {
-  color: #4a90e2;
+  color: var(--pd-accent, #6F747A);
 }
 
 .pd-kv__live-icon {
@@ -274,6 +274,14 @@ body {
   max-height: 760px;
   object-fit: contain;
   filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.08));
+}
+
+.pd-kv__mockup-img {
+  width: 100%;
+  max-height: 760px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.12));
 }
 
 /* ── 진입 애니메이션 (CSS fallback) ───────────────────────────── */
@@ -367,7 +375,8 @@ body {
     order: 2;
   }
 
-  .pd-kv__mockup {
+  .pd-kv__mockup,
+  .pd-kv__mockup-img {
     width: 100%;
     max-height: none;
   }
@@ -429,7 +438,7 @@ body {
 .project-detail-card__num {
   font-size: 22px;
   font-weight: 700;
-  color: #18d1a8;
+  color: var(--pd-accent, #6F747A);
 }
 
 .project-detail-card__name {
@@ -474,7 +483,7 @@ body {
 .overview-feature-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
-  border-color: #18d1a8;
+  border-color: var(--pd-accent, #6F747A);
 }
 
 .overview-feature-card__head {
@@ -488,7 +497,7 @@ body {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: #18d1a8;
+  background: var(--pd-accent, #6F747A);
   color: #fff;
   font-size: 14px;
   font-weight: 700;
@@ -557,7 +566,7 @@ body {
   width: 22px;
   height: 22px;
   border-radius: 999px;
-  background: #18d1a8;
+  background: var(--pd-accent, #6F747A);
 }
 
 .project-detail-checklist__item::after {
@@ -665,7 +674,7 @@ body {
 }
 
 .project-detail-btn--primary {
-  background: #18d1a8;
+  background: var(--pd-accent, #6F747A);
   color: #fff;
   border: none;
 }
@@ -810,6 +819,10 @@ body {
   object-fit: cover;
 }
 
+.project-detail-shot--page img {
+  object-position: center top;
+}
+
 /* ── 라이트박스 ───────────────────────────── */
 .pd-lightbox {
   position: fixed;
@@ -835,6 +848,18 @@ body {
   margin: auto;
   width: min(86vw, 520px);
   aspect-ratio: 220 / 360;
+}
+
+.pd-lightbox__stage--full {
+  width: min(92vw, 480px);
+  aspect-ratio: auto;
+}
+
+.pd-lightbox__stage--full .pd-lightbox__img {
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  object-position: center top;
 }
 
 .pd-lightbox__img {

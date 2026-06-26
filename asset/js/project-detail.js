@@ -31,10 +31,14 @@
   const shots = document.querySelectorAll(".project-detail-shot");
   let lastFocused = null;
 
-  function openLightbox(src, alt, position) {
+  function openLightbox(src, alt, position, isFullPage) {
+    const lightboxStage = lightbox.querySelector(".pd-lightbox__stage");
     lightboxImg.src = src;
     lightboxImg.alt = alt || "";
     lightboxImg.style.objectPosition = position || "center top";
+    if (lightboxStage) {
+      lightboxStage.classList.toggle("pd-lightbox__stage--full", !!isFullPage);
+    }
     lightbox.classList.add("is-open");
     lightbox.setAttribute("aria-hidden", "false");
     document.body.classList.add("pd-lightbox-open");
@@ -43,9 +47,11 @@
   }
 
   function closeLightbox() {
+    const lightboxStage = lightbox.querySelector(".pd-lightbox__stage");
     lightbox.classList.remove("is-open");
     lightbox.setAttribute("aria-hidden", "true");
     document.body.classList.remove("pd-lightbox-open");
+    if (lightboxStage) lightboxStage.classList.remove("pd-lightbox__stage--full");
     lightboxImg.src = "";
     if (lastFocused) lastFocused.focus();
   }
@@ -60,7 +66,8 @@
     const trigger = () => {
       lastFocused = shot;
       const position = img.style.objectPosition || "center top";
-      openLightbox(img.getAttribute("src"), img.getAttribute("alt"), position);
+      const isFullPage = shot.dataset.fullPage === "true";
+      openLightbox(img.getAttribute("src"), img.getAttribute("alt"), position, isFullPage);
     };
 
     shot.addEventListener("click", trigger);
